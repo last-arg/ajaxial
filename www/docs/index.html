@@ -287,6 +287,72 @@
         </div>
       </script>
 
+      <h2>Events</h2>
+      <p>Can listen to ajaxial events to change ajaxial behaviour. Some event will have Event.detail object.</p>
+      <script type="codeblock" data-lang="js">
+          document.addEventListener("ajaxial:trigger", function(ev) {
+            console.log(ev.detail);
+          }
+      </script>
+
+      <h3><code>ajaxial:trigger</code></h3>
+      <p>Calling Event.preventDefault() in event listener will cancel rest of the request/action.</p>
+      <p>Event.detail object:</p>
+      <ul>
+        <li>source - element that triggered the event.</li>
+        <li>method - method of HTTP request.</li>
+        <li>targets - elements that will be swapped.</li>
+        <li>params - parameters that will be sent with request.</li>
+      </ul>
+
+      <h3><code>ajaxial:requestSuccess</code></h3>
+      <p>Is triggered when Response.ok is true (Response.status between 200-299).</p>
+      <p>Calling Event.preventDefault() in event listener will return empty body.</p>
+      <p>Event.detail object:</p>
+      <ul>
+        <li>source - element that triggered the event.</li>
+        <li>response - Response object.</li>
+        <li>params - parameters that were sent with request.</li>
+      </ul>
+
+      <h3><code>ajaxial:requestFailure</code></h3>
+      <p>Is triggered when Response.ok is false (Response.status is not between 200-299).</p>
+      <p>Calling Event.preventDefault() in event listener will return empty body.</p>
+      <p>Event.detail object:</p>
+      <ul>
+        <li>source - element that triggered the event.</li>
+        <li>response - Response object.</li>
+        <li>params - parameters that were sent with request.</li>
+      </ul>
+
+      <h3><code>ajaxial:requestError</code></h3>
+      <p>Triggered when someking of Javascript error happened during fetch request.</p>
+      <p>Calling Event.preventDefault() will ignore error (otherwise error will be thrown).</p>
+      <p>Event.detail object:</p>
+      <ul>
+        <li>source - element that triggered the event.</li>
+        <li>error - Javascript Error</li>
+        <li>params - parameters that were sent with request.</li>
+      </ul>
+
+      <h3><code>ajaxial:swap</code></h3>
+      <p>This triggers every time a element is swapped. Remember one response can be swapped into multiple elements.</p>
+      <p>Event.detail object:</p>
+      <ul>
+        <li>source - element that triggered the event.</li>
+        <li>target - element that is going to be swapped</li>
+        <li>fragment - what will be swapped</li>
+        <li>swapStrategy - how the element will be swapped</li>
+      </ul>
+
+      <h3><code>ajaxial:finish</code></h3>
+      <p>Will trigger when all targets have been swapped with response</p>
+      <p>Event.detail contains no keys</p>
+
+      <h3><code>ajaxial:load</code></h3>
+      <p>Will trigger when element is done processing</p>
+      <p>Event.detail contains no keys</p>
+
       <h2>Integrating with JavaScript</h2>
       <p>While Ajaxial does its best to work seamlessly in as many situations as possible, it simply isn't possible to catch every edge case. In some cases, it will be necessary to manually tell Ajaxial where to look for elements with its attributes.</p>
 
