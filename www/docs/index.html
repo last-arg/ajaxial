@@ -288,7 +288,7 @@
       </script>
 
       <h2>Events</h2>
-      <p>Can listen to ajaxial events to change ajaxial behaviour. Some event will have Event.detail object.</p>
+      <p>Can react to ajaxial events. Or even modify ajaxial behaviour. Some events will give access to Event.default object. With some events can change ajaxial's behaviour by calling Event.preventDefautl()</p>
       <script type="codeblock" data-lang="js">
           document.addEventListener("ajaxial:trigger", function(ev) {
             console.log(ev.detail);
